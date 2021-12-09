@@ -1,7 +1,42 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "19a5a8c8-2d50-4759-9dc7-9bbb1d4d7a99"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "multi-language": {
+      "projectType": "library",
+      "root": "projects/multi-language",
+      "sourceRoot": "projects/multi-language/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/multi-language/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/multi-language/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/multi-language/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/multi-language/src/test.ts",
+            "tsConfig": "projects/multi-language/tsconfig.spec.json",
+            "karmaConfig": "projects/multi-language/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "multi-language"
 }
